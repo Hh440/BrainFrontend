@@ -5,7 +5,7 @@ export interface ButtonProps{
     text:string;
     startIcon?:any;
     endIcon?:any;
-    OnClick:()=>void;
+   // OnClick:()=>void;
 }
 
 
