@@ -1,11 +1,12 @@
+import { ReactElement } from "react";
 
 export interface ButtonProps{
     variant:"primary"|"secondary";
     size:"sm"|"md"|"lg";
     text:string;
-    startIcon?:any;
-    endIcon?:any;
-   // OnClick:()=>void;
+    startIcon?:ReactElement;
+    
+    OnClick?:()=>void;
 }
 
 
@@ -20,12 +21,12 @@ export interface ButtonProps{
     "lg":"py-4 px-6"
  }
 
- const defaultStyles="rounded-sm flex"
+ const defaultStyles="rounded-md p-4 flex font-light justify-center items-center h-10"
 
 export const  Button = (props:ButtonProps)=>{
     return(
-        <button className={`${variantStyles[props.variant]}
-        ${defaultStyles} ${sizeStyles[props.size]}`}>{props.startIcon? <div className="pr-2">{props.startIcon}</div>:null} {props.text} {props.endIcon}</button>
+        <button onClick={props.OnClick } className={`${variantStyles[props.variant]}
+        ${defaultStyles} ${sizeStyles[props.size]}`}>{props.startIcon? <div className="pr-2">{props.startIcon}</div>:null} {props.text} </button>
     )
 
 }
