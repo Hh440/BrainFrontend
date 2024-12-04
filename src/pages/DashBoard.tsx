@@ -1,17 +1,19 @@
 
 import { useState } from 'react'
 import { Button } from '../components/ui/Button'
-import { Card } from '../components/ui/Card'
+import { Card, CardProps } from '../components/ui/Card'
 import { CreateContentModal } from '../components/ui/CreateContentModal'
 import { PlusIcon } from '../icons/Plus'
 import { ShareIcon } from '../icons/Share'
 import { SideBar } from '../components/ui/SIdeBar'
+import { useContent } from '../hooks/useContent'
 
 
 export const DashBoard=()=> {
 
 
   const [modalOpen ,setModalOpen]=useState(false)
+  const {content}= useContent()
  
 
   return (
@@ -27,10 +29,11 @@ export const DashBoard=()=> {
         </div>
         
         
-        <div className='flex gap-4'>
-          <Card type='twitter' link='https://x.com/CodePen/status/1863735978395046100' title='Tweet Tweet Twitter'/>
-          <Card type='youtube' link='https://www.youtube.com/watch?v=0rtV5esQT6I' title='kpop rise'/>
+        <div className='flex flex-wrap gap-4'>
+          {content.map(({type,link,title}:CardProps)=><Card key={link} type={type} link={link} title={title}/>
           
+          
+          )}
           
         
         </div>

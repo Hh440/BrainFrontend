@@ -1,18 +1,20 @@
 import { ReactElement } from "react";
 
 export interface ButtonProps{
-    variant:"primary"|"secondary";
+    variant:"primary"|"secondary"|"special";
     size:"sm"|"md"|"lg";
     text:string;
     startIcon?:ReactElement;
-    
+    fullWidth?:boolean;
+    loading?:boolean
     OnClick?:()=>void;
 }
 
 
  const variantStyles={
     "primary":"bg-purple-600 text-white",
-    "secondary":"bg-purple-300 text-purple-600"
+    "secondary":"bg-purple-300 text-purple-600",
+    "special":"bg-green-500 text-white "
  }
 
  const sizeStyles={
@@ -25,8 +27,8 @@ export interface ButtonProps{
 
 export const  Button = (props:ButtonProps)=>{
     return(
-        <button onClick={props.OnClick } className={`${variantStyles[props.variant]}
-        ${defaultStyles} ${sizeStyles[props.size]}`}>{props.startIcon? <div className="pr-2">{props.startIcon}</div>:null} {props.text} </button>
+        <button onClick={props.OnClick }  disabled={props.loading} className={`${variantStyles[props.variant]}
+        ${defaultStyles} ${sizeStyles[props.size]} ${props.fullWidth?"w-full":""} ${props.loading?"opacity-45":""}`}>{props.startIcon? <div className="pr-2">{props.startIcon}</div>:null} {props.text} </button>
     )
 
 }

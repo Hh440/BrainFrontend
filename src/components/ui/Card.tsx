@@ -1,7 +1,7 @@
 import { ShareIcon } from "../../icons/Share"
 
 
-interface CardProps{
+export interface CardProps{
     title: string;
     link:string;
     type:"twitter"|"youtube"
