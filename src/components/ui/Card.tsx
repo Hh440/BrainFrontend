@@ -1,13 +1,33 @@
+import { BACKEND_URL } from "../../Config";
+import {  DeleteIcon } from "../../icons/Delete";
 import { ShareIcon } from "../../icons/Share"
+import axios from "axios";
 
 
 export interface CardProps{
+    id:number,
     title: string;
     link:string;
-    type:"twitter"|"youtube"
+    type:"twitter"|"youtube";
+    tags: { title: string }[];
 }
 
-export const Card = ({title,link,type}:CardProps)=>{
+
+export const Card = ({ id,title,link,type,tags}:CardProps)=>{
+
+    async function handleDelete(id:number){
+        await axios.delete(`${BACKEND_URL}/api/v1/content`,{
+            params:{
+                id:id
+            },
+            headers: {
+                Authorization:localStorage.getItem("token")
+            }
+        })
+
+        alert(`${id} deleted`)
+
+    }
 
     return (
         <div>
@@ -33,8 +53,8 @@ export const Card = ({title,link,type}:CardProps)=>{
                         </div>
 
                     
-                        <div className=" text-gray-500">
-                            <ShareIcon size={"md"}/>
+                        <div className=" text-gray-500 cursor-pointer" onClick={()=>handleDelete(id)}>
+                            <DeleteIcon/>
                         </div>
                         
                         
@@ -51,21 +71,18 @@ export const Card = ({title,link,type}:CardProps)=>{
 
                     {type==="twitter" && <blockquote className="twitter-tweet">
                      <a href={link.replace("x.com","twitter.com")}></a>
-                   </blockquote>}
+                   </blockquote>}     
+                </div>
+                <div className="flex gap-4 pt-4">
+                {tags.map((tag, index) => (
+                        <div
+                            key={`${tag.title}-${index}`} // Ensure uniqueness with index fallback
+                            className="bg-gray-700 rounded-full p-2 text-white "
+                        >
+                            {tag.title}
+                        </div>
+                    ))}
 
-
-
-
-
-
-
-
-
-
-
-                    
-
-                   
                 </div>
 
               

@@ -2,26 +2,46 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { BACKEND_URL } from "../Config"
 
+
+
+interface Tag {
+    title: string;
+}
+
+interface Content {
+    title: string;
+    link: string;
+    tags: Tag[]; 
+    type: string;
+}
+
 export const useContent= ()=>{
-    const[contents,setContents]= useState([])
+    const[contents,setContents]= useState<Content[]>([])
 
 
 
     async function fetchContents(){
 
         try{
-            const response =await axios.get(`${BACKEND_URL}/api/v1/contents`,{
-                headers:{
-                    "Authorization":localStorage.getItem("token")
+            axios.get(`${BACKEND_URL}/api/v1/content`, {
+                headers: {
+                    Authorization: localStorage.getItem("token")
                 }
             })
-            setContents(response.data.content)
+                .then(response => {
+                    setContents(response.data.content);
+                    
+                })
 
         }catch(e){
             console.error("Error fetching contents",e)
         }
     }
 
+
+            useEffect(() => {   
+                console.log(contents); 
+            }, [contents]); 
 
         useEffect(()=>{
             fetchContents()
@@ -37,6 +57,10 @@ export const useContent= ()=>{
             }
 
         },[])
+
+
+            
+
 
     return contents
 }
