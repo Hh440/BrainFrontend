@@ -1,7 +1,9 @@
 import { BACKEND_URL } from "../../Config";
 import {  DeleteIcon } from "../../icons/Delete";
-import { ShareIcon } from "../../icons/Share"
 import axios from "axios";
+import { YoutTube } from "../../icons/YouTube";
+import { Twitter } from "../../icons/Twiiter";
+import { ExteranlLink } from "../../icons/ExteranlLink";
 
 
 export interface CardProps{
@@ -9,7 +11,7 @@ export interface CardProps{
     title: string;
     link:string;
     type:"twitter"|"youtube";
-    tags: { title: string }[];
+    tags: { id:number,title: string }[];
 }
 
 
@@ -35,7 +37,7 @@ export const Card = ({ id,title,link,type,tags}:CardProps)=>{
                 <div className="flex justify-between ">
                     <div className="flex items-center text-md">
                         <div className=" text-gray-500">
-                                <ShareIcon size={"md"}/>
+                               {type==="youtube"?<YoutTube/>:<Twitter/>}
                         </div>
 
                         <div className="pl-2    ">
@@ -47,7 +49,7 @@ export const Card = ({ id,title,link,type,tags}:CardProps)=>{
 
                         <div className="pr-2 text-gray-500">
                             <a href={link} target="_blank">
-                                <ShareIcon size={"md"}/>
+                                <ExteranlLink/>
                             </a>
                             
                         </div>
@@ -74,9 +76,9 @@ export const Card = ({ id,title,link,type,tags}:CardProps)=>{
                    </blockquote>}     
                 </div>
                 <div className="flex gap-4 pt-4">
-                {tags.map((tag, index) => (
+                {tags.map((tag) => (
                         <div
-                            key={`${tag.title}-${index}`} // Ensure uniqueness with index fallback
+                            key={tag.id} 
                             className="bg-gray-700 rounded-full p-2 text-white "
                         >
                             {tag.title}
