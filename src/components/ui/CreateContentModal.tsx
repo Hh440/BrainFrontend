@@ -5,6 +5,7 @@ import { Input } from "./Input"
 import axios from "axios"
 import { BACKEND_URL } from "../../Config"
 import { TagSelector } from "./TagSelector"
+import { Label } from "./Label"
 
 
 
@@ -61,8 +62,8 @@ export const CreateContentModal =({open,onClose}:any)=>{
 
                         <div className="w-screen h-screen fixed top-0 left-0 flex justify-center">
 
-                        <div className="flex flex-col  justify-center ">
-                                <span className="bg-white opacity-100 p-4 rounded-md ">
+                        <div className="flex flex-col  justify-center min-w-96">
+                                <span className="bg-white opacity-100 p-4 rounded-md w-full ">
                                 <div className="flex justify-end">
                                     <div onClick={onClose } className="cursor-pointer">
                                         <Cross/>
@@ -70,13 +71,13 @@ export const CreateContentModal =({open,onClose}:any)=>{
                                     
 
                                 </div>
-                                <div className=" flex flex-col gap-2">
-                                    <Input reference={titleref} placeholder="Title" />
-                                    <Input reference={linkRef} placeholder="Link"/>
+                                <div className=" flex flex-col gap-2 pr-6">
+                                    <Input reference={titleref} placeholder="Title" className={"w-full"} />
+                                    <Input reference={linkRef} placeholder="Link" className={"w-full"}/>
                                 </div>
 
-                                <div>
-                                        <h1>Types</h1>
+                                <div className="pt-4">
+                                       <Label title="Type" className={"text-slate-600 px-2 text-lg"}/>
 
                                         <div className="flex gap-4 justify-center pb-2">
                                         <Button text="Youtube" size="md" variant={type===ContentType.Youtube?"primary":"secondary"} OnClick={()=>{setType(ContentType.Youtube)}}/>
@@ -87,15 +88,15 @@ export const CreateContentModal =({open,onClose}:any)=>{
                                     
                                 </div>
 
-                                <div className="pt-4">
-                                    <h1> Add Tags</h1>
+                                <div className="pt-4 pr-6 px-2">
+                                    <Label title="Add Tags" className={"text-slate-600 text-lg px-2"}/>
                                     <div className="pt-2">
                                         <TagSelector onChange={setTags}/>
                                     </div>
                                     
                                 </div>
 
-                                <div className="flex justify-center pt-2">
+                                <div className="flex justify-center pt-4">
                                 <Button OnClick={addContent} variant="primary" text="Sumbit" />
 
                                 </div>

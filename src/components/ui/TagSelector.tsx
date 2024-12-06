@@ -63,8 +63,17 @@ export const TagSelector = ({onChange}:TagSelectorProps)=>{
 
     },[])
 
+
+    const handleKey=(e:any)=>{
+
+      if(e.key=="Enter"){
+          handleAddTag()
+      }
+
+    }
+
     return(
-        <div className="w-64 border rounded p-4">
+        <div className="w-full border rounded p-4">
             <div className="flex flex-wrap gap-2 mb-2">
                 {selectedTags.map((tag)=>(
                      <span
@@ -84,13 +93,8 @@ export const TagSelector = ({onChange}:TagSelectorProps)=>{
             </div>
 
             <div className="flex flex-col items-center gap-2 mb-4">
-                <Input reference={TagRef} placeholder="Type a tag" />
-                <Button
-                text="Add"
-                variant="special"
-                OnClick={handleAddTag}
-                
-                />
+                <Input reference={TagRef} placeholder="Type a tag"  onKeyDown={(e:any)=>handleKey(e)}/>
+               
             
                 
             </div>

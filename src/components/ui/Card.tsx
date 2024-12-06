@@ -75,11 +75,11 @@ export const Card = ({ id,title,link,type,tags}:CardProps)=>{
                      <a href={link.replace("x.com","twitter.com")}></a>
                    </blockquote>}     
                 </div>
-                <div className="flex gap-4 pt-4">
+                <div className="flex flex-wrap justify-center items-center gap-4 pt-4 ">
                 {tags.map((tag) => (
                         <div
                             key={tag.id} 
-                            className="bg-gray-700 rounded-full p-2 text-white "
+                            className="bg-gray-700 rounded-full p-2 pl-3 pr-3 text-white "
                         >
                             {tag.title}
                         </div>
