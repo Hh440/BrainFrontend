@@ -1,66 +1,117 @@
-import { Button } from "../components/ui/Button"
 import { Input } from "../components/ui/Input"
-import axios from "axios";
-import { useRef } from "react";
-import { BACKEND_URL } from "../Config";
-import { useNavigate } from "react-router-dom";
+import { Label } from "../components/ui/Label"
+import { Button } from "../components/ui/Button"
+import { useRef } from "react"
+import axios from "axios"
+import { BACKEND_URL } from "../Config"
+// import ReCAPTCHA from "react-google-recaptcha"
+import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
+import 'react-toastify/dist/ReactToastify.css';
 
-export const SignIn = ()=>{
 
-   
-    const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
+
+export const SignIn= ()=>{
+
+
+    
+    const PasswordRef= useRef<HTMLInputElement>(null)
+    const EmailRef= useRef<HTMLInputElement>(null)
     const navigate= useNavigate()
 
+    async function handleSubmit(){
+
+        const email= EmailRef.current?.value;
+        const password= PasswordRef.current?.value;
+        
+
+        if(!email||!password){
+            toast.warning("All feilds should be filled")
+        }
+
+        try{
+           const response= await axios.post(`${BACKEND_URL}/api/v1/signin`,{
+                email,
+                password
+            })
+
+            const jwt = response.data.token;
+
+            localStorage.setItem("token",jwt)
 
 
-    async function signin(){
-        const email = emailRef.current?.value;
-       
-        const password =  passwordRef.current?.value;
 
-        if (!email || !password) {
-            alert("All fields are required!");
-            return;
-          }
-      
-          try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/signin`, {
-              
-                    email,
-                    
-                    password,
-                
-            });
-      
-            
-            const jwt= response.data.token
-            localStorage.setItem('token', jwt);
+            toast("LogIn Successful")
             navigate('/dashboard')
 
+        }catch(e){
+            console.log("Error while LogIn")
+            toast.error("Error while LogIn")
+        }
 
-          } catch (error) {
-            console.error("Signup failed:", error);
-            alert("Something went wrong during signup. Please try again.");
-          }
     }
-    return(
-        <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
-            <div className="bg-white rounded-xl border min-w-48 p-8">
-                <Input reference={emailRef} placeholder="email"/>
-                <Input  reference={passwordRef} placeholder="password"/>
 
-                <div className=" flex justify-center items-center pt-4">
-                    <Button OnClick={signin} variant="primary" text="SignUp" fullWidth={true} loading={false}/>
+
+
+
+
+
+
+    return(
+        <div className="w-screen h-screen flex  items-center justify-center">
+
+            <div className="w-7/12 text-black bg-white h-5/6 grid grid-cols-2 border border-black shadow-2xl rounded shadow-slate-700">
+                <div className=" flex flex-col  border-l-2 p-16 ">
+
+                   <div  className="w-full">
+                        <h1 className=" text-2xl px-4 font-medium">LogIn</h1>
+                        <span className="px-4">Create an account? <a href="/signup" className="text-blue-600 underline">SignUp</a></span>
+                        <br></br>
+
+
+                        <div className="flex flex-col gap-2 pt-8 w-full pr-4">
+
+                            <div>
+                                <Label title="Email" className={"pl-2"}/>
+                                <Input reference={EmailRef} placeholder="mohan12@gmail.com" className={"w-full text-md" }/>
+                            </div>   
+
+                            <div className="w-full">
+                                <Label title="Password" className={"pl-2"}/>
+                                <Input  reference={PasswordRef} placeholder="Kre@3$#!" className={"w-full text-md" }/>
+                                <h3 className="text-sm text-slate-400 pl-2">Use 8 or more characters with a mix of letters, numbers, & symbols</h3>
+                            </div>    
+                        </div>
+
+                        <div className="pl-2 pt-6">
+                            <div className="text-sm text-slate-400">By creating an account, you agree to our</div>
+                            <div className="text-sm text-slate-400"><a className="underline text-black" href="#">Terms of use</a> and <a className="underline text-black" href="#">Privacy Plociy</a></div>
+                        </div>
+
+                        <div className="pt-12 pl-2">
+                            {/* <ReCAPTCHA theme="light"/> */}
+
+                        <Button text="LogIn" variant="modern" OnClick={handleSubmit}/>
+
+                        </div>
+
+                        <div className="pt-4">
+
+                            <span className=" pl-2 text-sm">Create an account? <a href="/signup" className="text-blue-600 underline">SignUp</a></span>
+                        </div>
+                    </div> 
+                </div>
+
+
+                <div className="bg-gradient-to-r from-black via-gray-700 to-zinc-700">
+                    
 
                 </div>
 
-                
-
-                
+            
 
             </div>
-
+            
         </div>
     )
 }
