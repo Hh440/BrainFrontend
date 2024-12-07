@@ -4,6 +4,7 @@ import axios from "axios";
 import { YoutTube } from "../../icons/YouTube";
 import { Twitter } from "../../icons/Twiiter";
 import { ExteranlLink } from "../../icons/ExteranlLink";
+import { toast } from "react-toastify";
 
 
 export interface CardProps{
@@ -27,7 +28,7 @@ export const Card = ({ id,title,link,type,tags}:CardProps)=>{
             }
         })
 
-        alert(`${id} deleted`)
+        toast.success('Deleted Successfully')
 
     }
 

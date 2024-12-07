@@ -116,10 +116,11 @@ export const DashBoard=()=> {
         
         
         <div className='flex flex-wrap gap-4 pt-4'>
-          {contents.map(({id,type,link,title,tags})=><Card id={id} key={id} type={type} link={link} title={title} tags={tags}/>
-          
-          
-          )}
+          {contents.map(({ id, type, link, title, tags }) => {
+                const validType = type === "twitter" || type === "youtube" ? type : "twitter";
+
+                return <Card id={id} key={id} type={validType} link={link} title={title} tags={tags} />;
+          })}
           
         
         </div>
