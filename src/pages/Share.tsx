@@ -3,7 +3,6 @@ import { useEffect,useState } from "react"
 import { useParams } from "react-router-dom"
 import { BACKEND_URL } from "../Config"
 import { Card } from "../components/ui/Card"
-import { NavBar } from "../components/ui/NavBar"
 import { Logo } from "../icons/Logo"
 
 interface Tag {
