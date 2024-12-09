@@ -42,7 +42,7 @@ export const Share= ()=>{
                     <Logo/>
                 </div>
                 <div className="text-3xl">
-                    SecondBrain
+                    Brain
                 </div>
             </div>
 
