@@ -7,6 +7,7 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import { Test } from './pages/Test'
 import { Display } from './pages/Display'
 import { Home } from './pages/Home'
+import { Share } from './pages/Share'
 
 
 
@@ -26,6 +27,7 @@ function App() {
          <Route path='/dashboard'  element={<DashBoard/>}/>
          <Route path ='/test'  element={<Test/>}/>
          <Route path='/display/:media' element={<Display/>}/>
+         <Route path='/api/v1/brain/:shareLink' element={<Share/>}/>
 
       </Routes>
    </BrowserRouter>

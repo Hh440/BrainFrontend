@@ -8,6 +8,7 @@ import { ShareIcon } from '../icons/Share'
 import { SideBar } from '../components/ui/SIdeBar'
 import axios from 'axios'
 import { BACKEND_URL } from '../Config'
+import { toast } from 'react-toastify'
 
 
 
@@ -91,7 +92,7 @@ export const DashBoard=()=> {
        
 
         navigator.clipboard.writeText( link)
-        alert("Link copied")
+        toast(`Link Copied`)
 
       }
 
