@@ -1,3 +1,4 @@
+
 import { ReactElement } from "react";
 
 export interface ButtonProps{
@@ -8,6 +9,7 @@ export interface ButtonProps{
     fullWidth?:boolean;
     loading?:boolean
     OnClick?:()=>void;
+    className?:any
 }
 
 
@@ -37,11 +39,12 @@ export const  Button = (props:ButtonProps)=>{
         fullWidth = false,
         loading = false,
         OnClick,
+        className
     } = props;
     
     return(
         <button onClick={OnClick }  disabled={loading} className={`${variantStyles[variant]}
-        ${defaultStyles} ${sizeStyles[size]} ${fullWidth?"w-full":""} ${loading?"opacity-45":""}`}>{startIcon? <div className="pr-2">{startIcon}</div>:null} {text} </button>
+        ${defaultStyles} ${sizeStyles[size]} ${fullWidth?"w-full":""} ${loading?"opacity-45":""} ${className}`}>{startIcon? <div className="pr-2">{startIcon}</div>:null} {text} </button>
     )
 
 }

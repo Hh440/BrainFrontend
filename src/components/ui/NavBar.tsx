@@ -1,15 +1,30 @@
+import { useNavigate } from "react-router-dom"
 import { Logo } from "../../icons/Logo"
 import { Button } from "./Button"
 
 
+
 export const NavBar= ()=>{
+
+    const navigate= useNavigate()
+
+    const handleSignUp= ()=>{
+        navigate('/signup')
+    }
+    const handleSignIn= ()=>{
+        navigate('/signin')
+    }
 
     return(
         <nav className="h-16 border shadow-md">
 
             <div className="pt-3 flex justify-between">
                 <div className="flex justify-start pl-12 gap-3">
-                    <Logo/>
+                    <div className="text-blue-500">
+                        <Logo/>
+
+                    </div>
+                    
 
                     <h1 className="text-3xl font-medium">Brain</h1>
 
@@ -22,8 +37,8 @@ export const NavBar= ()=>{
                     </ul>
 
                     <div className="flex gap-4 ">
-                        <Button text="LogIn" variant="primary"/>
-                        <Button text="SignUp" variant="modern"/>
+                        <Button text="LogIn" variant="primary" OnClick={handleSignIn}/>
+                        <Button text="SignUp" variant="modern" OnClick={handleSignUp}/>
 
                     </div>
 

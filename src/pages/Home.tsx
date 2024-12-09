@@ -1,6 +1,12 @@
 import { NavBar } from "../components/ui/NavBar"
 import { Button } from "../components/ui/Button"
 import { Features } from "../components/ui/Features"
+import { Work } from "../components/ui/Work"
+import { Benefits } from "../components/ui/Benefits"
+import { Pricing } from "../components/ui/Pricing"
+import { FAQ } from "../components/ui/FAQ"
+import { Footer } from "../components/ui/footer"
+import { KeyBenefits } from "../components/ui/KeyBenfits"
 
 export const Home = ()=>{
     return(
@@ -40,7 +46,27 @@ export const Home = ()=>{
                 </div>
 
                 <div className="mt-8">
+                    <Work/>
 
+                </div>
+                <div className="mt-16">
+                    <Benefits/>
+
+                </div>
+                <div>
+                    <KeyBenefits/>
+                </div>
+                <div >
+                    <Pricing/>
+
+                </div>
+
+                <div className="mt-3">
+                    <FAQ/>
+
+                </div>
+                <div>
+                    <Footer/>
                 </div>
             </div>
             
