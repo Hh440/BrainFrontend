@@ -49,7 +49,7 @@ export const Home = ()=>{
                     <Work/>
 
                 </div>
-                <div className="mt-16">
+                <div className="mt-2">
                     <Benefits/>
 
                 </div>

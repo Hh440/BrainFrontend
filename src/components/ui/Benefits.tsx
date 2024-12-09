@@ -14,7 +14,7 @@ const benefits = [
 
 export const Benefits= ()=>{
     return(
-        <section className='bg-indigo-50 py-12'>
+        <section className='bg-indigo-50 py-20'>
 
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl text-center text-gray-900 font-semibold"> Benefits of Using SecondBrain</h1>
